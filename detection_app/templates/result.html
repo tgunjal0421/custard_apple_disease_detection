@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .result-container {
+            margin-top: 100px;
+        }
+        .alert {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container result-container text-center">
+        <h1 class="mb-4">Prediction Result</h1>
+
+        <!-- Display the result with conditional styling -->
+        <div class="alert {% if result == 'Healthy' %}alert-success{% else %}alert-danger{% endif %}">
+            <strong>{{ result }}</strong>
+        </div>
+
+        <p class="lead">The model is <strong>{{ confidence|floatformat:2 }}%</strong> confident in this prediction.</p>
+
+        <!-- Navigation buttons -->
+        <div class="mt-4">
+            <a href="/" class="btn btn-secondary btn-lg">Home</a>
+            <a href="/upload" class="btn btn-primary btn-lg">Try Another Image</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
