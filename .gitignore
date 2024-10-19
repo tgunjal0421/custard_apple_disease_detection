@@ -1,0 +1,23 @@
+# Byte-compiled files
+myvenv/
+__pycache__/
+*.pyd
+*.dll
+*.h5
+.DS_Store
+*.log
+
+
+# Virtual environment
+env/
+venv/
+
+# Django secret keys
+*.env
+
+# Database files
+db.sqlite3
+
+# Static and media files (optional)
+static/
+media/
