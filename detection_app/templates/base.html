@@ -5,3 +5,30 @@
         {% endfor %}
     </ul>
 {% endif %}
+
+<!-- Only show these options if the user is authenticated -->
+{% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'upload' %}">Upload Image</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'history' %}">Prediction History</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'result' %}">Results</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">{{ user.username }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    </li>
+{% else %}
+    <!-- Show login/register options for unauthenticated users -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
+    </li>
+{% endif %}

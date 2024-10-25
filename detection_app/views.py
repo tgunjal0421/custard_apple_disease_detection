@@ -8,6 +8,7 @@ import numpy as np
 import os
 from collections import defaultdict
 from .models import PredictionHistory
+from django.contrib.auth.decorators import login_required
 
 # Store disease counts (in-memory, or you can use a database)
 disease_counts = defaultdict(int)
@@ -24,6 +25,7 @@ def home(request):
     """Render the homepage with a link to the upload page."""
     return render(request, 'home.html')
 
+@login_required
 def predict(request):
     """Handle the uploaded image and make predictions."""
     if request.method == 'POST':
@@ -70,9 +72,10 @@ def predict(request):
 
     return render(request, 'upload.html', {'form': form})
 
+@login_required
 def history(request):
     """Display all previous predictions."""
-    predictions = PredictionHistory.objects.all().order_by('-timestamp')
+    predictions = PredictionHistory.objects.all().order_by('-timestamp').filter(user=user_login)
     return render(request, 'history.html', {'predictions': predictions})
 
 

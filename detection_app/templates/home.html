@@ -5,9 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        nav.navbar {
+            background: linear-gradient(135deg, #28a745, #2dce89);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+        .nav-link {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffc107 !important;
+        }
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1614381525423-c729b70b063f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxOTcwMjR8MHwxfGFsbHwxfHx8fHx8fHwxNjM3NTg2NzU5&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 1.5rem;
+        }
+        .btn-custom {
+            background-color: #ffc107;
+            color: #343a40;
+            font-weight: bold;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Custard Apple Detector</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -47,10 +103,17 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1>Welcome to the Custard Apple Disease Detection System!</h1>
-        <p>Upload an image and let the model detect diseases with high accuracy!</p>
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome to Custard Apple Disease Detection</h1>
+            <p>Upload an image to detect diseases with our AI-powered model!</p>
+            <a href="{% url 'upload' %}" class="btn btn-custom btn-lg">Upload Image</a>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Custard Apple Detector | Powered by AI & Data Science</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
