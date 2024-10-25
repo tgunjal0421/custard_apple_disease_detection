@@ -8,58 +8,130 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-        }
-        nav.navbar {
-            background: linear-gradient(135deg, #28a745, #2dce89);
-        }
-        .navbar-brand {
-            font-weight: bold;
-            color: white !important;
-        }
-        .nav-link {
-            color: white !important;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #ffc107 !important;
-        }
-        .hero {
-            background-image: url('https://images.unsplash.com/photo-1614381525423-c729b70b063f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxOTcwMjR8MHwxfGFsbHwxfHx8fHx8fHwxNjM3NTg2NzU5&ixlib=rb-1.2.1&q=80&w=1080');
-            background-size: cover;
-            background-position: center;
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-        }
-        .hero p {
-            font-size: 1.5rem;
-        }
-        .btn-custom {
-            background-color: #ffc107;
-            color: #343a40;
-            font-weight: bold;
-            border: none;
-        }
-        .btn-custom:hover {
-            background-color: #e0a800;
-            color: white;
-        }
-        footer {
-            background-color: #343a40;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            margin-top: 50px;
-        }
+    font-family: 'Roboto', sans-serif;
+    background-color: #505A63; /* Dark grey background for better contrast */
+    color: #D9D4D1; /* Light grey for general text */
+    margin: 0;
+    padding: 0;
+}
+
+nav.navbar {
+    background: linear-gradient(135deg, #098698, #3D444B); /* Teal to dark grey gradient */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #D9D4D1 !important; /* Light grey brand color */
+    font-size: 1.6rem;
+}
+
+.nav-link {
+    color: #AEC0C2 !important; /* Light cyan links */
+    transition: color 0.3s ease;
+    font-size: 1rem;
+}
+
+.nav-link:hover {
+    color: #D9D4D1 !important; /* Light grey on hover */
+}
+
+.hero {
+    background-image: url('https://images.unsplash.com/photo-1614381525423-c729b70b063f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxOTcwMjR8MHwxfGFsbHwxfHx8fHx8fHwxNjM3NTg2NzU5&ixlib=rb-1.2.1&q=80&w=1080');
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D9D4D1; /* Light grey for hero section text */
+    text-align: center;
+    box-shadow: inset 0 0 2000px rgba(0, 0, 0, 0.5); /* Dark overlay for better text readability */
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: #D9D4D1; /* Light grey heading */
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #BAB1AD; /* Subtle grey for the subtext */
+    margin-bottom: 30px;
+}
+
+.btn-custom {
+    background-color: #098698; /* Teal button */
+    color: #D9D4D1; /* Light grey text */
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #3D444B; /* Dark grey on hover */
+    color: #D9D4D1;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #3D444B; /* Dark grey for footer */
+    color: #D9D4D1; /* Light grey text */
+    padding: 1.5rem 0;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9rem;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.pt-3 {
+    padding-top: 1rem;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .btn-custom {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 50vh; /* Adjusted height for smaller screens */
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
     </style>
 </head>
 <body>

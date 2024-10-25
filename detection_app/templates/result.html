@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,82 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    
+
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #3D444B; /* Dark grey background */
+            font-family: 'Roboto', sans-serif;
         }
+
         .result-container {
             margin-top: 100px;
+            max-width: 700px;
+            background-color: #505A63; /* Slightly lighter grey for container */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            color: #D9D4D1; /* Light grey text */
+            margin: 0 auto;
         }
+
+        h1 {
+            color: #D9D4D1; /* Light grey for the header */
+            margin-bottom: 30px;
+        }
+
         .alert {
             font-size: 1.5rem;
+            background-color: #AEC0C2; /* Light cyan background for result message */
+            color: #3D444B; /* Dark grey for text */
+            border: 1px solid #BAB1AD; /* Border matching the color palette */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: #D9D4D1;
+        }
+
+        .btn-lg {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .btn-secondary {
+            background-color: #3D444B; /* Dark grey for secondary button */
+            color: #D9D4D1;
+            border: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #505A63; /* Slightly lighter grey on hover */
+            color: #D9D4D1;
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #098698; /* Teal color for primary button */
+            border: none;
+            color: #D9D4D1;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3D444B; /* Dark grey on hover for primary */
+            color: #D9D4D1;
+            transform: scale(1.05);
         }
     </style>
 </head>
+
 <body>
     <div class="container result-container text-center">
-        <h1 class="mb-4">Prediction Result</h1>
+        <h1>Prediction Result</h1>
 
         <!-- Display the result with conditional styling -->
         <div class="alert {% if result == 'Healthy' %}alert-success{% else %}alert-danger{% endif %}">
@@ -42,4 +103,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
