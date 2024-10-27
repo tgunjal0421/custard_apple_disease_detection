@@ -1,72 +1,70 @@
 from django.shortcuts import render, redirect
-
-# detection_app/views.py
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import ImageUploadForm
 from tensorflow.keras.models import load_model
 from PIL import Image
 import numpy as np
 import os
 from collections import defaultdict
-from .models import PredictionHistory
-from django.contrib.auth.decorators import login_required
-
-# Store disease counts (in-memory, or you can use a database)
-disease_counts = defaultdict(int)
+from .models import PredictionHistory, DiseaseInfo
 
 # Load your trained model (only once at app startup)
 model = load_model(os.path.join('detection_app', 'models', 'model.h5'))
 
-model_metrics = {
-    'accuracy': 0.91,
-    'precision': 0.91,
-}
+# In-memory storage for model performance metrics and disease counts
+model_metrics = {'accuracy': 0.91, 'precision': 0.91}
+disease_counts = defaultdict(int)
 
 def home(request):
-    """Render the homepage with a link to the upload page."""
+    """Render the homepage."""
     return render(request, 'home.html')
 
 @login_required
 def predict(request):
-    """Handle the uploaded image and make predictions."""
+    """Handle image upload and make predictions."""
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            # Retrieve the uploaded image
+            # Retrieve and preprocess the uploaded image
             image = form.cleaned_data['image']
-
-            # Preprocess the image to fit the model's input
             img = Image.open(image).resize((128, 128))
             img_array = np.array(img) / 255.0  # Normalize the pixel values
             img_array = img_array.reshape(1, 128, 128, 3)  # Add batch dimension
 
-            # Make prediction using the model
+            # Make prediction
             prediction = model.predict(img_array)
             confidence = np.max(prediction) * 100  # Convert to percentage
             class_index = np.argmax(prediction)
 
-            # Map the prediction index to disease names
+            # Map prediction index to disease names
             class_names = [
-                'Anthracnose', 'Blank Canker', 'Diplodia Rot', 
-                'Healthy', 'Leaf Spot on Fruit', 
+                'Anthracnose', 'Blank Canker', 'Diplodia Rot',
+                'Healthy', 'Leaf Spot on Fruit',
                 'Leaf Spot on Leaves', 'MealyBug'
             ]
             result = class_names[class_index]
-            
-            # Increment the disease count
+
+            # Update disease count and save prediction to the database
             disease_counts[result] += 1
+            PredictionHistory.objects.create(
+                user=request.user,  # Link prediction to logged-in user
+                image=image,
+                result=result,
+                confidence=confidence
+            )
             
-            # Save prediction to the database
-            PredictionHistory.objects.create(image=image, result=result, confidence=confidence)
+            # Fetch disease info
+            disease_info = DiseaseInfo.objects.get(disease_name=result)
 
-            
-            # Render the result page with performance metrics
             return render(request, 'result.html', {
-                'result': result, 
-                'confidence': np.max(prediction) * 100, 
-                'metrics': model_metrics
+                'result': result,
+                'confidence': confidence,
+                'metrics': model_metrics,
+                'disease_info': disease_info,
             })
-
-
     else:
         form = ImageUploadForm()
 
@@ -74,14 +72,9 @@ def predict(request):
 
 @login_required
 def history(request):
-    """Display all previous predictions."""
-    predictions = PredictionHistory.objects.all().order_by('-timestamp').filter(user=user_login)
+    """Display the logged-in user's prediction history."""
+    predictions = PredictionHistory.objects.filter(user=request.user).order_by('-timestamp')
     return render(request, 'history.html', {'predictions': predictions})
-
-
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib import messages
 
 # User Registration
 def register(request):
@@ -118,3 +111,11 @@ def user_logout(request):
     logout(request)
     return redirect('login')
 
+
+def disease_info(request, disease_name):
+    try:
+        disease = DiseaseInfo.objects.get(disease_name=disease_name)
+    except DiseaseInfo.DoesNotExist:
+        disease = None
+    
+    return render(request, 'disease_info.html', {'disease': disease})

@@ -11,31 +11,31 @@
 
     <style>
         body {
-            background-color: #3D444B; /* Dark grey background */
+            background-color: #3D444B;
             font-family: 'Roboto', sans-serif;
         }
 
         .result-container {
             margin-top: 100px;
             max-width: 700px;
-            background-color: #505A63; /* Slightly lighter grey for container */
+            background-color: #505A63;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-            color: #D9D4D1; /* Light grey text */
+            color: #D9D4D1;
             margin: 0 auto;
         }
 
         h1 {
-            color: #D9D4D1; /* Light grey for the header */
+            color: #D9D4D1;
             margin-bottom: 30px;
         }
 
         .alert {
             font-size: 1.5rem;
-            background-color: #AEC0C2; /* Light cyan background for result message */
-            color: #3D444B; /* Dark grey for text */
-            border: 1px solid #BAB1AD; /* Border matching the color palette */
+            background-color: #AEC0C2;
+            color: #3D444B;
+            border: 1px solid #BAB1AD;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
@@ -54,27 +54,27 @@
         }
 
         .btn-secondary {
-            background-color: #3D444B; /* Dark grey for secondary button */
+            background-color: #3D444B;
             color: #D9D4D1;
             border: none;
             transition: background-color 0.3s, transform 0.2s;
         }
 
         .btn-secondary:hover {
-            background-color: #505A63; /* Slightly lighter grey on hover */
+            background-color: #505A63;
             color: #D9D4D1;
             transform: scale(1.05);
         }
 
         .btn-primary {
-            background-color: #098698; /* Teal color for primary button */
+            background-color: #098698;
             border: none;
             color: #D9D4D1;
             transition: background-color 0.3s, transform 0.2s;
         }
 
         .btn-primary:hover {
-            background-color: #3D444B; /* Dark grey on hover for primary */
+            background-color: #3D444B;
             color: #D9D4D1;
             transform: scale(1.05);
         }
@@ -97,6 +97,8 @@
             <a href="/" class="btn btn-secondary btn-lg">Home</a>
             <a href="/upload" class="btn btn-primary btn-lg">Try Another Image</a>
         </div>
+        <!-- Add button to navigate to disease details -->
+        <a href="{% url 'disease_info' result %}" class="btn btn-info mt-4">Learn More about {{ result }}</a>
     </div>
 
     <!-- Bootstrap JS -->
@@ -105,3 +107,5 @@
 </body>
 
 </html>
+
+

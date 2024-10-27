@@ -1,0 +1,17 @@
+<!-- disease_info.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ disease.disease_name }} - Information</title>
+</head>
+<body>
+    <h1>{{ disease.disease_name }}</h1>
+    <p><strong>Description:</strong> {{ disease.description }}</p>
+    <p><strong>Cure:</strong> {{ disease.cure }}</p>
+    <p><strong>Care Recommendations:</strong> {{ disease.care_recommendations }}</p>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>
