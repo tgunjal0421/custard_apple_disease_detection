@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Custard Apple Disease Detection</title>
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'home' %}" class="logo">CustardApple<span>Detect</span></a>
+            <ul class="nav-links">
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="settings">
+        <h1>Account Settings</h1>
+        <form action="{% url 'update_settings' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}">
+            <button type="submit">Save Changes</button>
+        </form>
+    </section>
+</body>
+</html>

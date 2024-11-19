@@ -6,8 +6,8 @@
     </ul>
 {% endif %}
 
-<!-- Only show these options if the user is authenticated -->
 {% if user.is_authenticated %}
+    <!-- Authenticated User Navigation -->
     <li class="nav-item">
         <a class="nav-link" href="{% url 'upload' %}">Upload Image</a>
     </li>
@@ -17,14 +17,19 @@
     <li class="nav-item">
         <a class="nav-link" href="{% url 'result' %}">Results</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">{{ user.username }}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.username }}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
     </li>
 {% else %}
-    <!-- Show login/register options for unauthenticated users -->
+    <!-- Unauthenticated User Navigation -->
     <li class="nav-item">
         <a class="nav-link" href="{% url 'login' %}">Login</a>
     </li>
@@ -32,3 +37,6 @@
         <a class="nav-link" href="{% url 'register' %}">Register</a>
     </li>
 {% endif %}
+
+
+

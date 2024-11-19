@@ -119,3 +119,23 @@ def disease_info(request, disease_name):
         disease = None
     
     return render(request, 'disease_info.html', {'disease': disease})
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
+@login_required
+def settings(request):
+    if request.method == 'POST':
+        # Update user settings (e.g., username, email)
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        
+        request.user.username = username
+        request.user.email = email
+        request.user.save()
+
+        messages.success(request, "Your settings have been updated.")
+        return redirect('profile')
+
+    return render(request, 'settings.html')
