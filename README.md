@@ -25,9 +25,11 @@ This project is a **web-based application using Django** that predicts diseases 
 
 ## 📸 Screenshots  
  ![image](https://github.com/user-attachments/assets/de1de3a3-06e4-4ce8-b243-3ab3377e8115)
+
 Fig. Result output of Proposed Model
 
 ![image](https://github.com/user-attachments/assets/6b21599f-71eb-4e19-9a49-29d3a4ae8271)
+
 Fig. Web Application features and Their Outcomes
 
 
